@@ -23,7 +23,7 @@ public class ActivitateElevi {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    @JoinTable(name = "elevi")
+    @JoinTable(name = "activitati_elevi")
     private Elev elev;
 
     public ActivitateElevi(String numeActivitate, String descriere, Date dataDesfasurare, Elev elev) {

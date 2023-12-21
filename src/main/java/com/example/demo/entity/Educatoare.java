@@ -18,7 +18,7 @@ public class Educatoare {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    @JoinTable(name = "gradinite")
+    @JoinTable(name = "gradinite_educatoare")
     private Gradinita gradinita;
 
     public Educatoare(String numeEducatoare, String prenumeEducatoare, Gradinita gradinita) {

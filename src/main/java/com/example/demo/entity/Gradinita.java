@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,14 +24,14 @@ public class Gradinita {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    @JoinTable(name = "educatoare")
+    @JoinTable(name = "educatoare_gradinita")
     private List<Educatoare> listaEducatoare;
 
-    public Gradinita(String numeGradinita, String adresa, String contact, List<Educatoare> listaEducatoare) {
+    public Gradinita(String numeGradinita, String adresa, String contact) {
         this.numeGradinita = numeGradinita;
         this.adresa = adresa;
         this.contact = contact;
-        this.listaEducatoare = listaEducatoare;
+        this.listaEducatoare = new ArrayList<>();
     }
 
     public Gradinita(){
@@ -69,7 +70,7 @@ public class Gradinita {
         this.contact = contact;
     }
 
-    public void setListaEducatoare(List<Educatoare> listaEducatoare) {
-        this.listaEducatoare = listaEducatoare;
+    public void addEducatoare(Educatoare educatoare) {
+        this.listaEducatoare.add(educatoare);
     }
 }
