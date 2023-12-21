@@ -50,5 +50,5 @@ public class Parinte {
     public void setEmail(String email) {
         this.email = email;
     }
-
+//testing dev branch (ofc I forgot about this)
 }
