@@ -1,18 +1,41 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.*;
+
 import java.util.Date;
 
+@Entity
+@Table(name = "programari")
 public class Programare {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int idProgramare;
-    private Date dataProgramare;
-    private int idElev;
-    private int idGradinita;
 
-    public Programare(Date dataProgramare, int idElev, int idGradinita) {
+    private Date dataProgramare;
+
+    @OneToOne(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JoinTable(name = "elevi")
+    private Elev elev;
+
+    @OneToOne(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JoinTable(name = "gradinite")
+    private Gradinita gradinita;
+
+    public Programare(Date dataProgramare, Elev elev, Gradinita gradinita) {
         this.dataProgramare = dataProgramare;
-        this.idElev = idElev;
-        this.idGradinita = idGradinita;
+        this.elev = elev;
+        this.gradinita = gradinita;
+    }
+
+    public Programare() {
+
     }
 
     public int getIdProgramare() {
@@ -23,24 +46,24 @@ public class Programare {
         return dataProgramare;
     }
 
-    public int getIdElev() {
-        return idElev;
+    public Elev getElev() {
+        return elev;
     }
 
-    public int getIdGradinita() {
-        return idGradinita;
+    public Gradinita getGradinita() {
+        return gradinita;
     }
 
     public void setDataProgramare(Date dataProgramare) {
         this.dataProgramare = dataProgramare;
     }
 
-    public void setIdElev(int idElev) {
-        this.idElev = idElev;
+    public void setElev(Elev elev) {
+        this.elev = elev;
     }
 
-    public void setIdGradinita(int idGradinita) {
-        this.idGradinita = idGradinita;
+    public void setGradinita(Gradinita gradinita) {
+        this.gradinita = gradinita;
     }
 
 }

@@ -1,20 +1,40 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.*;
+
 import java.util.Date;
 
+@Entity
+@Table(name = "activitati")
 public class ActivitateElevi {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int idActivitate;
-    private String numeActivitate;
-    private String descriere;
-    private Date dataDesfasurare;
-    private int idElev;
 
-    public ActivitateElevi(String numeActivitate, String descriere, Date dataDesfasurare, int idElev) {
+    private String numeActivitate;
+
+    @Column(length = 1024)
+    private String descriere;
+
+    private Date dataDesfasurare;
+
+    @OneToOne(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JoinTable(name = "elevi")
+    private Elev elev;
+
+    public ActivitateElevi(String numeActivitate, String descriere, Date dataDesfasurare, Elev elev) {
         this.numeActivitate = numeActivitate;
         this.descriere = descriere;
         this.dataDesfasurare = dataDesfasurare;
-        this.idElev = idElev;
+        this.elev = elev;
+    }
+
+    public ActivitateElevi() {
+
     }
 
     public int getIdActivitate() {
@@ -33,8 +53,8 @@ public class ActivitateElevi {
         return dataDesfasurare;
     }
 
-    public int getIdElev() {
-        return idElev;
+    public Elev getElev() {
+        return elev;
     }
 
     public void setNumeActivitate(String numeActivitate) {
@@ -49,8 +69,8 @@ public class ActivitateElevi {
         this.dataDesfasurare = dataDesfasurare;
     }
 
-    public void setIdElev(int idElev) {
-        this.idElev = idElev;
+    public void setElev(Elev elev) {
+        this.elev = elev;
     }
 
 }
