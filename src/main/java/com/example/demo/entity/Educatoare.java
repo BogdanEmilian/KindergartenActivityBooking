@@ -1,16 +1,34 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "educatoare")
 public class Educatoare {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int idEducatoare;
-    private String numeEducatoare;
-    private String prenumeEducatoare;
-    private int idGradinita;
 
-    public Educatoare(String numeEducatoare, String prenumeEducatoare, int idGradinita) {
+    private String numeEducatoare;
+
+    private String prenumeEducatoare;
+
+    @OneToOne(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JoinTable(name = "gradinite")
+    private Gradinita gradinita;
+
+    public Educatoare(String numeEducatoare, String prenumeEducatoare, Gradinita gradinita) {
         this.numeEducatoare = numeEducatoare;
         this.prenumeEducatoare = prenumeEducatoare;
-        this.idGradinita = idGradinita;
+        this.gradinita = gradinita;
+    }
+
+    public Educatoare(){
+
     }
 
     public int getIdEducatoare() {
@@ -25,8 +43,8 @@ public class Educatoare {
         return prenumeEducatoare;
     }
 
-    public int getIdGradinita() {
-        return idGradinita;
+    public Gradinita getGradinita() {
+        return gradinita;
     }
 
     public void setNumeEducatoare(String numeEducatoare) {
@@ -37,8 +55,8 @@ public class Educatoare {
         this.prenumeEducatoare = prenumeEducatoare;
     }
 
-    public void setIdGradinita(int idGradinita) {
-        this.idGradinita = idGradinita;
+    public void setGradinita(Gradinita gradinita) {
+        this.gradinita = gradinita;
     }
 
 }

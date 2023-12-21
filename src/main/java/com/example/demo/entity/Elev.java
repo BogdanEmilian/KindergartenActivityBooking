@@ -1,22 +1,44 @@
 package com.example.demo.entity;
 
-import java.util.Date;
+import jakarta.persistence.*;
 
+import java.util.Date;
+import java.util.List;
+
+@Entity
+@Table(name = "elevi")
 public class Elev {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int idElev;
-    private String nume;
-    private String prenume;
-    private Date dataNastere;
-    private String adresa;
-    private int idParinte;
 
-    public Elev(String nume, String prenume, Date dataNastere, String adresa, int idParinte) {
+    private String nume;
+
+    private String prenume;
+
+    private Date dataNastere;
+
+    @Column(length = 500)
+    private String adresa;
+
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JoinTable(name = "parinti")
+    private List<Parinte> listaParinti;
+
+    public Elev(String nume, String prenume, Date dataNastere, String adresa, List<Parinte> listaParinti) {
         this.nume = nume;
         this.prenume = prenume;
         this.dataNastere = dataNastere;
         this.adresa = adresa;
-        this.idParinte = idParinte;
+        this.listaParinti = listaParinti;
+    }
+
+    public Elev(){
+
     }
 
     public int getIdElev() {
@@ -39,8 +61,8 @@ public class Elev {
         return adresa;
     }
 
-    public int getIdParinte() {
-        return idParinte;
+    public List<Parinte> getListaParinti() {
+        return listaParinti;
     }
 
     public void setNume(String nume) {
@@ -59,8 +81,8 @@ public class Elev {
         this.adresa = adresa;
     }
 
-    public void setIdParinte(int idParinte) {
-        this.idParinte = idParinte;
+    public void setListaParinti(List<Parinte> listaParinti) {
+        this.listaParinti = listaParinti;
     }
 
 }
