@@ -26,7 +26,7 @@ public class Elev {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    @JoinTable(name = "parinti")
+    @JoinTable(name = "parinti_elevi")
     private List<Parinte> listaParinti;
 
     public Elev(String nume, String prenume, Date dataNastere, String adresa, List<Parinte> listaParinti) {

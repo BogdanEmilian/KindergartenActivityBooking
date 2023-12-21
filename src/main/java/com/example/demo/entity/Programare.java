@@ -25,7 +25,7 @@ public class Programare {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    @JoinTable(name = "gradinite")
+    @JoinTable(name = "programare_gradinite")
     private Gradinita gradinita;
 
     public Programare(Date dataProgramare, Elev elev, Gradinita gradinita) {
