@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.entity.Elev;
 import com.example.demo.entity.Gradinita;
 import com.example.demo.repo.GradinitaRepository;
 import org.slf4j.Logger;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GradinitaService {
@@ -40,5 +42,18 @@ public class GradinitaService {
         gradinitaRepository.delete(gradinita);
 
         LOGGER.info("Removed kindergarten: " + gradinita.getNumeGradinita());
+    }
+
+    public Gradinita findById(int id){
+        Optional<Gradinita> gradinita = gradinitaRepository.findById(id);
+
+        if (gradinita.isPresent())
+        {
+            return gradinita.get();
+        }
+        else
+        {
+            throw new RuntimeException("Couldn't find kindergarten by id: " + id);
+        }
     }
 }

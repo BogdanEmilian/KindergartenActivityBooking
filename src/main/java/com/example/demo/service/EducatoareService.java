@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.entity.Educatoare;
 import com.example.demo.repo.EducatoareRepository;
+import com.example.demo.repo.GradinitaRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class EducatoareService {
 
     @Autowired
     private EducatoareRepository educatoareRepository;
+
+    @Autowired
+    private GradinitaService gradinitaService;
 
     public void addEducatoare(final Educatoare educatoare){
         LOGGER.info("Adding educator: " + educatoare.getNumeEducatoare() + " " + educatoare.getPrenumeEducatoare());

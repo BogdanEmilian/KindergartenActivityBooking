@@ -21,7 +21,8 @@ public class ActivitateElevi {
 
     @OneToOne(
             cascade = CascadeType.ALL,
-            orphanRemoval = true
+            orphanRemoval = true,
+            optional = true
     )
     @JoinTable(name = "activitati_elevi")
     private Elev elev;

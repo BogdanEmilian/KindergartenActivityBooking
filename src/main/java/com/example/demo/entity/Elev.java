@@ -29,12 +29,11 @@ public class Elev {
     @JoinTable(name = "parinti_elevi")
     private List<Parinte> listaParinti;
 
-    public Elev(String nume, String prenume, Date dataNastere, String adresa, List<Parinte> listaParinti) {
+    public Elev(String nume, String prenume, Date dataNastere, String adresa) {
         this.nume = nume;
         this.prenume = prenume;
         this.dataNastere = dataNastere;
         this.adresa = adresa;
-        this.listaParinti = listaParinti;
     }
 
     public Elev(){
@@ -81,8 +80,8 @@ public class Elev {
         this.adresa = adresa;
     }
 
-    public void setListaParinti(List<Parinte> listaParinti) {
-        this.listaParinti = listaParinti;
+    public void addParinte(Parinte parinte){
+        listaParinti.add(parinte);
     }
 
 }

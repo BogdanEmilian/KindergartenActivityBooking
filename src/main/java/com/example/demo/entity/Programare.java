@@ -18,7 +18,7 @@ public class Programare {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    @JoinTable(name = "elevi")
+    @JoinTable(name = "elevi_programare")
     private Elev elev;
 
     @OneToOne(

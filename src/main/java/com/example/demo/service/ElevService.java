@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ElevService {
@@ -40,5 +41,18 @@ public class ElevService {
         elevRepository.delete(elev);
 
         LOGGER.info("Removed student: " + elev.getNume() + " " + elev.getPrenume());
+    }
+
+    public Elev findById(int id){
+        Optional<Elev> elev = elevRepository.findById(id);
+
+        if (elev.isPresent())
+        {
+            return elev.get();
+        }
+        else
+        {
+            throw new RuntimeException("Couldn't find student by id: " + id);
+        }
     }
 }
